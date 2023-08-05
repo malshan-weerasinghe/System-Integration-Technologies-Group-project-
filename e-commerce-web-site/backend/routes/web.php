@@ -49,4 +49,33 @@ Route::middleware(['auth'])->group(function () {
         return view('driverdash');
     })->name('driver.dashboard')
     ->middleware(['userApproved']);
-     
+    Route::middleware([
+        'auth:sanctum',
+        config('jetstream.auth_session'),
+        'verified'
+    ])->group(function () {
+        // Root URL with checkRoleid method
+        Route::get('/', [HomeController::class,'checkRoleid']);
+    });
+    
+    Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {
+        // Route for dashboard products view
+        Route::get('/dashboard/products', function () {
+            return view('dashboard.products');
+        })->name('products');
+    });
+    
+    Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {
+        // Route for dashboard promotion view
+        Route::get('/dashboard/promotion', function () {
+            return view('dashboard.promotion');
+        })->name('promotion');
+    });
+    
+    Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {
+        // Route for dashboard supplier view
+        Route::get('/dashboard/supplier', function () {
+            return view('dashboard.supplier');
+        })->name('supplier');
+    });
+    
