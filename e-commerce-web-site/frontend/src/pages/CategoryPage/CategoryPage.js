@@ -8,52 +8,6 @@ import Navbar from '../../components/Navbar/Navbar';
 import ProductList from '../../components/ProductList/ProductList';
 import { fetchProductsCategory } from '../../store/productSlice';
 import "./CategoryPage.scss";
-
-/*
-const CategoryPage = () => {
-  const dispatch = useDispatch();
-  const { name } = useParams();
-  const { products, status } = useSelector((state) => state.product);
-
-  useEffect(() => {
-    dispatch(fetchProductsByCategory(name));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [name]);
-
-  return (
-    <div className = "category-page">
-      <Navbar />
-      <div className = "container">
-        <div className = "breadcrumb">
-          <ul className = "breadcrumb-items flex">
-            <li className = "breadcrumb-item">
-              <Link to = "/">
-                <i className = "fas fa-home"></i>
-                <span className = "breadcrumb-separator">
-                  <i className = "fas fa-chevron-right"></i>
-                </span>
-              </Link>
-            </li>
-            <li>
-              Category
-              <span className = "breadcrumb-separator">
-                <i className = "fas fa-chevron-right"></i>
-              </span>
-            </li>
-            <li>
-              {name}
-            </li>
-          </ul>
-        </div>
-      </div>
-      <ProductList products = {products} status = {status} />
-      <Footer />
-    </div>
-  )
-}
-
-export default CategoryPage;*/
-
 import { fetchCategories, fetchProductsByCategory } from '../../store/categorySlice';
 import { fetchProducts } from '../../store/productSlice';
 
