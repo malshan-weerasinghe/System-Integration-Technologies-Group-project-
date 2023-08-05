@@ -17,15 +17,18 @@ const Category = ({categories, status}) => {
         <section className="categories py-5 bg-ghost-white" id="categories">
             <div className="container">
                 <div className="categories-content">
+
                     <div className='section-title'>
                         <h3 className="text-uppercase fw-7 text-regal-blue ls-1">All Categories</h3>
                     </div>
+
                     <div className="category-items grid">
                         {
                             categories.map((category, index) => (
-                                // Link to specific category page
+ 
                                 <Link to={`category/${category}`} key={index}>
                                     <div className="category-item">
+
                                         <div className="category-item-name text-center">
                                             <h6 className='fs-20'>{category}</h6>
                                         </div>
