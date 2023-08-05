@@ -35,4 +35,18 @@ Route::middleware(['auth'])->group(function () {
         // View for orders
         Route::view('dashboard/orders', 'dashboard.orders')->name('orders');
     });
+    Route::get('/admin', function () {
+        return view('dashboard.index');
+    })->name('admin.dashboard')
+    ->middleware(['adminOrEmployee','auth']);
     
+    Route::get('/employee', function () {
+        return view('dashboard.index');
+    })->name('employee.dashboard')
+    ->middleware(['adminOrEmployee','userApproved']);
+    
+    Route::get('/driver', function () {
+        return view('driverdash');
+    })->name('driver.dashboard')
+    ->middleware(['userApproved']);
+     
