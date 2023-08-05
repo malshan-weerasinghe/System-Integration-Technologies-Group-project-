@@ -12,12 +12,14 @@ import { fetchCategories, fetchProductsByCategory } from '../../store/categorySl
 import { fetchProducts } from '../../store/productSlice';
 
 const CategoryPage = () => {
+  // Get the dispatch function using the useDispatch hook
  const dispatch = useDispatch();
   const {name} = useParams();
   const {data: categories, status: categoryStatus} = useSelector((state) => state.category);
   const {data: products, status: productStatus} = useSelector((state) => state.product);
   const {catProductAll: productsByCategory, catProductAllStatus} = useSelector((state) => state.category);
   useEffect(() => {
+    // Dispatch multiple actions to fetch data from the Redux store
     dispatch(fetchProducts());
     dispatch(fetchCategories());
     dispatch(fetchProductsCategory(name))
