@@ -18,3 +18,7 @@ use App\Http\Controllers\HomeController;
 |
 */
 
+Route::get('/', [HomeController::class, 'checkRoleid']);
+Route::post('/admin/change-status/{user}', [Approval::class, 'switchStatus'])
+    ->name('admin.approve')
+    ->middleware('adminOrEmployee');
