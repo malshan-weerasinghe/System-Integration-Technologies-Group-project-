@@ -25,7 +25,18 @@ class RegistrationTest extends TestCase
         $response->assertStatus(200);
     }
 
- 
+    public function test_registration_screen_cannot_be_rendered_if_support_is_disabled(): void
+    {
+        if (Features::enabled(Features::registration())) {
+            $this->markTestSkipped('Registration support is enabled.');
+
+            return;
+        }
+
+        $response = $this->get('/register');
+
+        $response->assertStatus(404);
+    }
 
    
 }
