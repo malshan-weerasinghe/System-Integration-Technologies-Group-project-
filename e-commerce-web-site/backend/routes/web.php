@@ -1,6 +1,11 @@
 <?php
 
+use App\Http\Controllers\Approval;
+use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\EmployeeController;
+use Illuminate\Routing\Controllers\Middleware;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +18,3 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
