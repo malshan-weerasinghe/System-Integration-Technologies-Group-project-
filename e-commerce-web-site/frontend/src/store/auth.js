@@ -25,9 +25,9 @@ export const registerUser = async (registerData) => {
     console.log('Registration successful', data);
     return data;
   }; 
-  
-  
+
   export const loginUser = async (loginData) => {
+
     const response = await fetch('http://127.0.0.1:8000/api/login', {
       method: 'POST',
       headers: {
@@ -35,10 +35,11 @@ export const registerUser = async (registerData) => {
       },
       body: JSON.stringify({
         ...loginData,
-        device_name: 'web', // Replace 'web' with the actual device name
+        device_name: 'web', 
       }),
+      
     });
-  
+
     if (!response.ok) {
       throw new 
   Error('Login failed');
@@ -46,13 +47,16 @@ export const registerUser = async (registerData) => {
   
     const data = await response.json();
     return data;
-  };
   
+    
+    
+  };
 
   export const logoutUser = async () => {
+
     const token = localStorage.getItem('token');
     const actualToken = token.split('|')[1];
-  
+    
     const response = await fetch('http://127.0.0.1:8000/api/logout', {
       method: 'POST',
       headers: {
@@ -60,17 +64,23 @@ export const registerUser = async (registerData) => {
         'Authorization': `Bearer ${actualToken}`,
       },
     });
-  
+
     if (!response.ok) {
       // If the response status is 401 (Unauthorized), it means the token was invalid
       if (response.status === 401) {
         console.error('The token is invalid or expired');
       } else {
-        throw new Error('Logout failed...................');
+        throw new Error('Logout failed....................');
       }
     }
-  
+
     localStorage.removeItem('token');
     localStorage.removeItem('user');
-  };
   
+    
+  };
+
+
+  
+  
+ 
