@@ -75,6 +75,7 @@ export const registerUser = async (registerData) => {
     }
 
     localStorage.removeItem('token');
+    localStorage.removeItem('user');
   
     
   };
