@@ -41,13 +41,11 @@ export const registerUser = async (registerData) => {
     });
 
     if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
+      throw new 
+  Error('Login failed');
     }
-
-    const data = await response.json();
-
-    console.log('Registration successful', data);
-    return data;
+  
+   
   
     
     
