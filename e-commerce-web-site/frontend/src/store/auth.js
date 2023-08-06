@@ -53,6 +53,9 @@ export const registerUser = async (registerData) => {
   };
 
   export const logoutUser = async () => {
+
+    const token = localStorage.getItem('token');
+    const actualToken = token.split('|')[1];
    
   
     
