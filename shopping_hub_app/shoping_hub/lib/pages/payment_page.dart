@@ -112,3 +112,94 @@ class _PaymentState extends State<Payment> {
                     children: [
                       SvgPicture.string(
                         '''
+<<<<<<< HEAD
+=======
+ bottomNavigationBar: Container(
+        color:navbar,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 10.0),
+          child: GNav(
+            // selectedIndex: _selectedIndex,
+            iconSize: 30.0,
+            gap: 8.0,
+            textSize: 18.0,
+            // backgroundColor: Colors.white,
+            // tabBackgroundColor: _bgColors[_selectedIndex],
+            // activeColor: Colors.white,
+            padding: EdgeInsets.all(16.0),
+            tabs: [
+              GButton(
+                icon: Icons.home_outlined,
+               
+                iconColor: HexColor("#15CE1F"),
+                iconActiveColor: HexColor("#15CE1F"),
+                onPressed: () {
+                  setState(() {
+                    _selectedIndex = 0;
+                  });
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => HomePage()),
+                  );
+                },
+              ),
+              GButton(
+                icon: Icons.shopping_cart_outlined,
+               
+                iconColor: HexColor("#13B662"),
+                 iconActiveColor: HexColor("#13B662"),
+                onPressed: () {
+                  setState(() {
+                    _selectedIndex = 1;
+                  });
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => cartPage()),
+                  );
+                },
+              ),
+              GButton(
+                icon: Icons.chat_bubble_outline_rounded,
+                
+                iconColor: HexColor("#119DA4"),
+                iconActiveColor: HexColor("#119DA4"),
+                onPressed: () {
+                  setState(() {
+                    _selectedIndex = 2;
+                  });
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => chatPage()),
+                  );
+                },
+              ),
+              GButton(
+                icon: Icons.favorite_outline,
+                
+                iconColor: HexColor("#19647E"),
+                iconActiveColor: HexColor("#19647E"),
+                onPressed: () {
+                  setState(() {
+                    _selectedIndex = 3;
+                  });
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => favPage()),
+                  );
+                },
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  String generateOrderId() {
+    var random = Random();
+    // Generate a random number with 6 digits
+    var orderId = random.nextInt(900000) + 100000;
+    return orderId.toString();
+  }
+}
+>>>>>>> ashen
