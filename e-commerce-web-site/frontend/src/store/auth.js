@@ -33,7 +33,10 @@ export const registerUser = async (registerData) => {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(dataToSend),
+      body: JSON.stringify({
+        ...loginData,
+        device_name: 'web', 
+      }),
       
     });
 
@@ -49,6 +52,8 @@ export const registerUser = async (registerData) => {
     
     
   };
+
+
   
   
  
