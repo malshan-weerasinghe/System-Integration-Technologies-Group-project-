@@ -64,6 +64,15 @@ export const registerUser = async (registerData) => {
         'Authorization': `Bearer ${actualToken}`,
       },
     });
+
+    if (!response.ok) {
+      // If the response status is 401 (Unauthorized), it means the token was invalid
+      if (response.status === 401) {
+        console.error('The token is invalid or expired');
+      } else {
+        throw new Error('Logout success...................');
+      }
+    }
   
     
   };
