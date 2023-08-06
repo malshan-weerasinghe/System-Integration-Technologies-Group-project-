@@ -70,7 +70,7 @@ export const registerUser = async (registerData) => {
       if (response.status === 401) {
         console.error('The token is invalid or expired');
       } else {
-        throw new Error('Logout success...................');
+        throw new Error('Logout failed....................');
       }
     }
 
