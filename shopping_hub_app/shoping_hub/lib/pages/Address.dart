@@ -1,4 +1,5 @@
-import 'home_page.dart';
+
+import 'package:flutter/material.dart';
 
 class Address extends StatefulWidget {
   const Address({Key? key}) : super(key: key);
@@ -40,4 +41,24 @@ void _getLocation() async {
     // For example, you can show an error message or perform alternative logic.
     print('Unable to get the current position.');
   }
+}
+  Future<Position?> _determinePosition() async {
+  LocationPermission permission;
+
+  permission = await Geolocator.checkPermission();
+
+  if (permission == LocationPermission.denied) {
+    permission = await Geolocator.requestPermission();
+    if (permission == LocationPermission.denied) {
+      return null; // Return null instead of throwing an error
+    }
+  }
+  if (permission == LocationPermission.deniedForever) {
+    return null; // Return null instead of throwing an error
+  }
+  if (permission == LocationPermission.whileInUse ||
+      permission == LocationPermission.always) {
+    return await Geolocator.getCurrentPosition();
+  }
+  return null; // Return null instead of throwing an error
 }
