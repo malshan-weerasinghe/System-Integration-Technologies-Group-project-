@@ -52,6 +52,12 @@ export const registerUser = async (registerData) => {
     
   };
 
+  export const logoutUser = async () => {
+   
+  
+    
+  };
+
 
   
   
