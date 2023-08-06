@@ -57,7 +57,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   void toggleDrawer() {
-   /* setState(() {
+    /* setState(() {
       xOffset = 0;
       yOffset = 0;
       scaleFactor = 1;
@@ -82,144 +82,165 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle( SystemUiOverlayStyle(
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
       statusBarColor: HexColor("#15CE1F"), // Set any color you want
       statusBarBrightness: Brightness.dark, //or set color as white
     ));
 
-    Color TextColor = Theme.of(context).brightness == Brightness.dark ? Colors.white : HexColor("#575353");
-    Color navbar = Theme.of(context).brightness == Brightness.dark ? HexColor("#3B3B3B") : Colors.white;
+    Color TextColor = Theme.of(context).brightness == Brightness.dark
+        ? Colors.white
+        : HexColor("#575353");
+    Color navbar = Theme.of(context).brightness == Brightness.dark
+        ? HexColor("#3B3B3B")
+        : Colors.white;
     return Scaffold(
-      body:  FutureBuilder<List<Category>>(
-          future: futureCategories,
-          builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return const Center(child: CircularProgressIndicator());
-            } else if (snapshot.hasError) {
-              return Center(child: Text('Error: ${snapshot.error}'));
-            } else {
-              Future.microtask(() =>
-                  Provider.of<CategoryModel>(context, listen: false).setCategories(snapshot.data!)
-              );
-              return Stack(
-                children: [
-                  DrawerPage(onCloseDrawer: toggleMenu),
-                  AnimatedContainer(
-                    transform: Matrix4.translationValues(xOffset, yOffset, 0)..scale(scaleFactor),
-                    alignment: Alignment.centerLeft,
-                    duration: const Duration(milliseconds: 250),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        color: Theme.of(context).colorScheme.background,
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const SizedBox(height: 35.0),
-                          Container(
-                            color: HexColor("#15CE1F"),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Align(
-                                  alignment: Alignment.centerRight,
-                                  child: Padding(
-                                    padding: const EdgeInsets.symmetric(horizontal: 5.0, vertical: 8.0),
-                                    child: IconButton(
-                                      icon: const Icon(
-                                        Icons.menu,
-                                        color: Colors.white,
-                                      ),
-                                      iconSize: 35.0,
-                                      onPressed: toggleMenu,
-                                    ),
-                                  ),
-                                ),
-                                const Padding(
-                                  padding: EdgeInsets.only(left: 5),
-                                  child: Text(
-                                    "Shopping Hub",
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(fontSize: 30.0, fontWeight: FontWeight.bold, color: Colors.white),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 65),
+      body: FutureBuilder<List<Category>>(
+        future: futureCategories,
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(child: CircularProgressIndicator());
+          } else if (snapshot.hasError) {
+            return Center(child: Text('Error: ${snapshot.error}'));
+          } else {
+            Future.microtask(() =>
+                Provider.of<CategoryModel>(context, listen: false)
+                    .setCategories(snapshot.data!));
+            return Stack(
+              children: [
+                DrawerPage(onCloseDrawer: toggleMenu),
+                AnimatedContainer(
+                  transform: Matrix4.translationValues(xOffset, yOffset, 0)
+                    ..scale(scaleFactor),
+                  alignment: Alignment.centerLeft,
+                  duration: const Duration(milliseconds: 250),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      color: Theme.of(context).colorScheme.background,
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const SizedBox(height: 35.0),
+                        Container(
+                          color: HexColor("#15CE1F"),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Align(
+                                alignment: Alignment.centerRight,
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 5.0, vertical: 8.0),
                                   child: IconButton(
-                                    onPressed: (){
-                                      _authProvider.logout().whenComplete(() {
-                                        Fluttertoast.showToast(msg: 'Logout Success');
-                                        Navigator.push(
-                                            context,
-                                            MaterialPageRoute(builder: (
-                                                context) => const LoginPage()));
-                                      });
-                                    },
-                                    icon: const Icon(Icons.logout, color: Colors. white,),
+                                    icon: const Icon(
+                                      Icons.menu,
+                                      color: Colors.white,
+                                    ),
+                                    iconSize: 35.0,
+                                    onPressed: toggleMenu,
                                   ),
-
-                                )
-                              ],
-                            ),
-                          ),
-                          const SizedBox(height: 15,),
-                          const Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 37.0),
-                            child: Align(
-                              alignment: Alignment.center,
-                              child: Text(
-                                "Select Category",
-                                textAlign: TextAlign.center,
-                                style: TextStyle(fontSize: 22.0, fontWeight: FontWeight.bold, color: Colors.black),
+                                ),
                               ),
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 10.0,
-                          ),
-                          Expanded(
-                            child: Consumer<CategoryModel>(
-                              builder: (context, value, child) {
-                                return ListView.builder(
-                                  itemCount: value.categories.length,
-                                  padding: const EdgeInsets.all(12.0),
-                                  itemBuilder: (context, index) {
-                                    return GestureDetector(
-                                      onTap: () {
-                                        Navigator.push(
+                              const Padding(
+                                padding: EdgeInsets.only(left: 5),
+                                child: Text(
+                                  "Shopping Hub",
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                      fontSize: 30.0,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white),
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(left: 65),
+                                child: IconButton(
+                                  onPressed: () {
+                                    _authProvider.logout().whenComplete(() {
+                                      Fluttertoast.showToast(
+                                          msg: 'Logout Success');
+                                      Navigator.push(
                                           context,
                                           MaterialPageRoute(
-                                            builder: (context) => ItemPage(title: value.categories[index].name),
-                                          ),
-                                        );
-                                      },
-                                      child: categoryTiles(
-                                        title: value.categories[index].name,
-                                        color: const Color(0xFF95FF9A).withOpacity(0.2),
-                                      ),
-                                    );
+                                              builder: (context) =>
+                                                  const LoginPage()));
+                                    });
                                   },
-                                );
-                              },
+                                  icon: const Icon(
+                                    Icons.logout,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 15,
+                        ),
+                        const Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 37.0),
+                          child: Align(
+                            alignment: Alignment.center,
+                            child: Text(
+                              "Select Category",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  fontSize: 22.0,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
                             ),
                           ),
-                        ],
-                      ),
+                        ),
+                        const SizedBox(
+                          height: 10.0,
+                        ),
+                        Expanded(
+                          child: Consumer<CategoryModel>(
+                            builder: (context, value, child) {
+                              return ListView.builder(
+                                itemCount: value.categories.length,
+                                padding: const EdgeInsets.all(12.0),
+                                itemBuilder: (context, index) {
+                                  return GestureDetector(
+                                    onTap: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) => ItemPage(
+                                              title:
+                                                  value.categories[index].name),
+                                        ),
+                                      );
+                                    },
+                                    child: categoryTiles(
+                                      title: value.categories[index].name,
+                                      color: const Color(0xFF95FF9A)
+                                          .withOpacity(0.2),
+                                    ),
+                                  );
+                                },
+                              );
+                            },
+                          ),
+                        ),
+                      ],
                     ),
                   ),
-                ],
-              );
-            }
-          },
-        ),
-
+                ),
+              ],
+            );
+          }
+        },
+      ),
       bottomNavigationBar: Visibility(
         visible: xOffset == 0 && yOffset == 0,
         child: Container(
-           color: navbar,
+          color: navbar,
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 10.0),
+            padding:
+                const EdgeInsets.symmetric(horizontal: 15.0, vertical: 10.0),
             child: GNav(
               selectedIndex: _selectedIndex,
               iconSize: 30.0,
