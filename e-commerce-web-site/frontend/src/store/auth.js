@@ -41,6 +41,8 @@ export const registerUser = async (registerData) => {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
 
+    const data = await response.json();
+
     console.log('Registration successful', data);
     return data;
   
