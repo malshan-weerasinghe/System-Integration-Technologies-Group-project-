@@ -25,6 +25,10 @@ export const registerUser = async (registerData) => {
     console.log('Registration successful', data);
     return data;
   }; 
+
+  export const loginUser = async (loginData) => {
+    
+  };
   
   
  
