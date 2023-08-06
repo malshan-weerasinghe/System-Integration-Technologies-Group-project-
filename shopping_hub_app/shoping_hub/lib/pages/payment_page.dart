@@ -194,12 +194,3 @@ class _PaymentState extends State<Payment> {
       ),
     );
   }
-
-  String generateOrderId() {
-    var random = Random();
-    // Generate a random number with 6 digits
-    var orderId = random.nextInt(900000) + 100000;
-    return orderId.toString();
-  }
-}
->>>>>>> ashen

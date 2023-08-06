@@ -169,6 +169,103 @@ class _profileState extends State<profile> {
                       ),
                     ),
                   ),
+                  SizedBox(
+                    height: 20.0,
+                  ),
+                  Container(
+                    width: 280.0,
+                    height: 45.0,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(5.0),
+                      border: Border.all(color: HexColor("#848484")),
+                    ),
+                    child: TextField(
+                      decoration: InputDecoration(
+                        contentPadding:
+                            const EdgeInsets.only(left: 10.0, top: -6.0),
+                        hintText: 'House Hold Size',
+                        hintStyle: TextStyle(
+                          fontSize: 15.0,
+                          color: HexColor("#848484"),
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 20.0,
+                  ),
+                  Center(
+                    child: Column(
+                      children: [
+                        TextButton(
+                          onPressed: () {
+                            showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return AlertDialog(
+                                  title: Text('Update'),
+                                  content:
+                                      Text('Your profile has been updated '),
+                                  // actions: [
+                                  //   TextButton(
+                                  //     onPressed: () {
+                                  //       Navigator.of(context).pop(); // Close the pop-up
+                                  //     },
+                                  //     child: Text(
+                                  //       'No',
+                                  //       style: TextStyle(
+                                  //         color: Colors.black,
+                                  //         fontWeight: FontWeight.bold,
+                                  //       ),
+                                  //     ),
+                                  //   ),
+                                  //   TextButton(
+                                  //     onPressed: () {
+                                  //       // Perform redeeming logic
+                                  //       Navigator.of(context).pop(); // Close the pop-up
+                                  //     },
+                                  //     child: Text(
+                                  //       'Yes',
+                                  //       style: TextStyle(
+                                  //         color: Colors.black,
+                                  //         fontWeight: FontWeight.bold,
+                                  //       ),
+                                  //     ),
+                                  //   ),
+                                  // ],
+                                );
+                              },
+                            );
+                          },
+                          style: ButtonStyle(
+                            backgroundColor: MaterialStateProperty.all<Color>(
+                                HexColor("#0EC42B")),
+                            foregroundColor:
+                                MaterialStateProperty.all<Color>(Colors.white),
+                            shape: MaterialStateProperty.all<
+                                RoundedRectangleBorder>(
+                              RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(5.0),
+                              ),
+                            ),
+                          ),
+                          child: Container(
+                            width: 265.0,
+                            height: 35.0,
+                            padding: const EdgeInsets.only(top: 5.0),
+                            child: const Text(
+                              "Update",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontSize: 17.0,
+                                fontFamily: 'Roboto',
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                 ],
               ),
             ),
