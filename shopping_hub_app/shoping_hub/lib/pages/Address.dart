@@ -1,5 +1,18 @@
+import 'dart:math';
 
+import 'package:shopping_hub/pages/location.dart';
+import 'package:shopping_hub/pages/preview.dart';
+import 'package:shopping_hub/pages/signup_page.dart';
 import 'package:flutter/material.dart';
+import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:hexcolor/hexcolor.dart';
+import 'package:geolocator/geolocator.dart';
+
+import '../components/custom_navigation_bar1.dart';
+import 'cart_page.dart';
+import 'chat_page.dart';
+import 'favorite_page.dart';
+import 'home_page.dart';
 
 class Address extends StatefulWidget {
   const Address({Key? key}) : super(key: key);
@@ -42,6 +55,7 @@ void _getLocation() async {
     print('Unable to get the current position.');
   }
 }
+
   Future<Position?> _determinePosition() async {
   LocationPermission permission;
 
@@ -62,7 +76,9 @@ void _getLocation() async {
   }
   return null; // Return null instead of throwing an error
 }
- @override
+
+
+  @override
   Widget build(BuildContext context) {
     Color navbar =
         Theme.of(context).brightness == Brightness.dark ? HexColor("#333333") : Colors.white;
@@ -399,3 +415,23 @@ void _getLocation() async {
         ),
       );
     }
+
+  void _saveAddress() {
+    // Get the address data from the text fields
+    String address = _addressController.text;
+    String city = _cityController.text;
+    String zipCode = _zipCodeController.text;
+
+    // Save the address to the desired location (e.g., database, local storage, etc.)
+    // Example:
+    // SomeService.saveAddress(address, city, zipCode);
+
+    // You can also access the selected delivery type using the "deliveryType" variable
+
+    // Print the address data for verification
+    print('Address: $address');
+    print('City: $city');
+    print('Zip Code: $zipCode');
+    print('Delivery Type: $deliveryType');
+  }
+}
