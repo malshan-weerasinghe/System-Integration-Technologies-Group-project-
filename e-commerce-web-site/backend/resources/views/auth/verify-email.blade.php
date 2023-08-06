@@ -17,14 +17,12 @@
         <div class="mt-4 flex items-center justify-between">
             <form method="POST" action="{{ route('verification.send') }}">
                 @csrf
-
                 <div>
                     <x-button type="submit">
                         {{ __('Resend Verification Email') }}
                     </x-button>
                 </div>
             </form>
-
             <div>
                 <a
                     href="{{ route('profile.show') }}"
