@@ -36,6 +36,13 @@ export const registerUser = async (registerData) => {
       body: JSON.stringify(dataToSend),
       
     });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    console.log('Registration successful', data);
+    return data;
   
     
     
