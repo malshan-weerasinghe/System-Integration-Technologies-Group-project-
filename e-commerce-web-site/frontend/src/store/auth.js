@@ -73,6 +73,8 @@ export const registerUser = async (registerData) => {
         throw new Error('Logout success...................');
       }
     }
+
+    localStorage.removeItem('token');
   
     
   };
